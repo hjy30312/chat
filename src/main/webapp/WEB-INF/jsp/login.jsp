@@ -59,10 +59,13 @@
             <br />
             <div class="am-cf">
                 <input type="submit"  value="登 录"  class="am-btn am-btn-primary am-btn-sm am-fl">
-                <input type="submit" name="" value="忘记密码 ^_^? " class="am-btn am-btn-default am-btn-sm am-fr">
+                <input type="submit" value="忘记密码 ^_^? " class="am-btn am-btn-default am-btn-sm am-fr">
             </div>
         </form>
-        <button type="button" onclick="goRegister()"> 没有帐号？点击注册</button>>
+
+        <form action="/toregister.do" method="post" class="am-form">
+            <input type="submit"  value ="没有帐号？点击注册">
+        </form>
         <hr>
         <p>© 2014 AllMobilize, Inc. Licensed under MIT license.</p>
     </div>
@@ -70,7 +73,9 @@
 </body>
 <script>
 function goRegister(){
-location.href="register.jsp";
+
+
+    location.href="<%=path%>WEB-INF/jsp/register.jsp";
 }
 </script>
 </html>

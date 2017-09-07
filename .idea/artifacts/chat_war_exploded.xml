@@ -23,6 +23,7 @@
           <element id="library" level="project" name="Maven: commons-dbcp:commons-dbcp:1.3" />
           <element id="library" level="project" name="Maven: commons-pool:commons-pool:1.6" />
           <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.30" />
+          <element id="library" level="project" name="Maven: org.mybatis:mybatis-spring:1.3.0" />
         </element>
       </element>
       <element id="directory" name="META-INF">

@@ -20,7 +20,9 @@ public class LoginController {
     }
 
     @RequestMapping("/toregister.do")
-    public String toRegister(){return "register";}
+    public String toRegister(){
+        return "register";
+    }
 
     @RequestMapping("/register.do")
     public void register(
@@ -45,10 +47,10 @@ public class LoginController {
             HttpSession session) {
         User user = userDao.findByUsername(username);
         if (user.getPassword().equals(password)) {
-            return "ok";
+            return "jsp/ok";
         } else {
             model.put("msg", "用户名或密码错误");
-            return "login";
+            return "jsp/login";
         }
     }
 }

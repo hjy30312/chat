@@ -1,6 +1,7 @@
-package com.hjy.models;
+package com.hjy.mapper;
 
 
+import com.hjy.models.User;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
