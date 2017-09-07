@@ -17,7 +17,12 @@ public class UserDao implements IUserDao{
 
     public void save(User user) {
         String sql = "insert into tb_user " +
-                "";
+                "(username,password) value(?,?)";
+        Object[] params = {
+                user.getUsername(),
+                user.getPassword(),
+        };
+        template.update(sql, params);
     }
 
     /**

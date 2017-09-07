@@ -1,3 +1,10 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: Administrator
+  Date: 2017/9/6
+  Time: 14:26
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <%@ page  language="java" pageEncoding="utf-8" %>
@@ -43,7 +50,7 @@
         <hr>
 
 
-        <form action="/login.do" method="post" class="am-form">
+        <form action="/register.do" method="post" class="am-form">
             <span style="color: #FF0000;">${msg}</span>
             <br>
             <label for="username">账号:</label>
@@ -52,26 +59,15 @@
             <label for="password">密码:</label>
             <input type="password" name="password" id="password" value="">
             <br>
-            <label for="remember-me">
-                <input id="remember-me" type="checkbox">
-                记住密码
-            </label>
+
             <br />
             <div class="am-cf">
-                <input type="submit"  value="登 录"  class="am-btn am-btn-primary am-btn-sm am-fl">
-                <input type="submit" name="" value="忘记密码 ^_^? " class="am-btn am-btn-default am-btn-sm am-fr">
-            </div>
+                <input type="submit"  value="注 册"  class="am-btn am-btn-primary am-btn-sm am-fl">
+                </div>
         </form>
-        <button type="button" onclick="goRegister()"> 没有帐号？点击注册</button>>
         <hr>
         <p>© 2014 AllMobilize, Inc. Licensed under MIT license.</p>
     </div>
 </div>
 </body>
-<script>
-function goRegister(){
-location.href="register.jsp";
-}
-</script>
 </html>
-

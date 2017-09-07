@@ -1,8 +1,6 @@
 package com.hjy.controller;
 
-
 import com.hjy.dao.IUserDao;
-import com.hjy.dao.impl.UserDao;
 import com.hjy.models.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -19,6 +17,24 @@ public class LoginController {
     @RequestMapping("/tologin.do")
     public String toLogin() {
         return "login";
+    }
+
+    @RequestMapping("/toregister.do")
+    public String toRegister(){return "register";}
+
+    @RequestMapping("/register.do")
+    public void register(
+            String username,
+            String password,
+            ModelMap model) {
+        if(userDao.findByUsername(username) == null) {
+            User user = new User();
+            user.setUsername(username);
+            user.setPassword(password);
+            userDao.save(user);
+        } else {
+           //返回用户名已存在信息
+        }
     }
 
     @RequestMapping("/login.do")
