@@ -28,7 +28,7 @@
 		<!-- 配置拦截器-->
 
 
-		<!--mybatis配置-->
+		<!--mybatis配置
 		<bean id="dataSourse" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 			<property name="driverClassName">
 				<value>com.mysql.jdbc.Driver</value>
@@ -52,17 +52,17 @@
 		<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 			<property name="basePackage" value="com.hjy.mapper"/>
 		</bean>
+-->
 
 
-
-		<!-- 定义JdbcTemplate
+		<!-- 定义JdbcTemplate -->
 		<bean id="template"
 			  class="org.springframework.jdbc.core.JdbcTemplate">
-			<!- 注入连接信息
+			<!-- 注入连接信息 -->
 			<property name="dataSource" ref="dbcp">
 			</property>
 		</bean>
-		<!- 数据源 连接池 dbcp
+		<!-- 数据源 连接池 dbcp -->
 		<bean id="dbcp"
 			  class="org.apache.commons.dbcp.BasicDataSource">
 			<property name="username" value="root">
@@ -76,8 +76,5 @@
 					  value="jdbc:mysql://localhost:3306/hjy">
 			</property>
 		</bean>
-		-->
-
-
 
 </beans>

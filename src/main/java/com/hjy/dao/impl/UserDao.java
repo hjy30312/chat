@@ -3,7 +3,6 @@ package com.hjy.dao.impl;
 import com.hjy.dao.IUserDao;
 import com.hjy.models.User;
 import com.hjy.mapper.UserRowMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -14,10 +13,6 @@ import javax.annotation.Resource;
 public class UserDao implements IUserDao {
 
 
-
-
-}
-    /*
     @Resource
     private JdbcTemplate template;
 
@@ -31,7 +26,6 @@ public class UserDao implements IUserDao {
         };
         template.update(sql, params);
     }
-
 
 
     public User findByUsername(String username) {
@@ -48,6 +42,6 @@ public class UserDao implements IUserDao {
         }
         return user;
     }
-*/
+}
 
 

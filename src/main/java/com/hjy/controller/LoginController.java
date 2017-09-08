@@ -46,11 +46,18 @@ public class LoginController {
             ModelMap model,
             HttpSession session) {
         User user = userDao.findByUsername(username);
-        if (user.getPassword().equals(password)) {
-            return "jsp/ok";
+        if(user != null) {
+            if (user.getPassword().equals(password)) {
+                return "ok";
+            } else {
+                model.put("msg", "用户名或密码错误");
+                return "login";
+            }
         } else {
-            model.put("msg", "用户名或密码错误");
-            return "jsp/login";
+            model.put("msg", "用户名不存在");
+            return "login";
         }
+
+
     }
 }
