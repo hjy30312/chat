@@ -8,11 +8,11 @@ package com.hjy.websocket;
  * 注解的值将被用于监听用户连接的终端访问URL地址,客户端可以通过这个URL来连接到WebSocket服务器端
  */
 @ServerEndpoint("/websocket")
-public class WebSocketTest {
+public class WebSocket {
     //静态变量，用来记录当前在线连接数。应该把它设计成线程安全的。
     private static int onlineCount = 0;
     //concurrent包的线程安全Set，用来存放每个客户端对应的MyWebSocket对象。若要实现服务端与单一客户端通信的话，可以使用Map来存放，其中Key可以为用户标识
-    private static CopyOnWriteArraySet<WebSocketTest> webSocketSet = new CopyOnWriteArraySet<WebSocketTest>();
+    private static CopyOnWriteArraySet<WebSocket> webSocketSet = new CopyOnWriteArraySet<WebSocket>();
     //与某个客户端的连接会话，需要通过它来给客户端发送数据
     private Session session;
     /**
@@ -44,7 +44,7 @@ public class WebSocketTest {
     public void onMessage(String message, Session session) {
         System.out.println("来自客户端的消息:" + message);
 //群发消息
-        for(WebSocketTest item: webSocketSet){
+        for(WebSocket item: webSocketSet){
             try {
                 item.sendMessage(message);
             } catch (IOException e) {
@@ -76,9 +76,9 @@ public class WebSocketTest {
         return onlineCount;
     }
     public static synchronized void addOnlineCount() {
-        WebSocketTest.onlineCount++;
+        WebSocket.onlineCount++;
     }
     public static synchronized void subOnlineCount() {
-        WebSocketTest.onlineCount--;
+        WebSocket.onlineCount--;
     }
 }

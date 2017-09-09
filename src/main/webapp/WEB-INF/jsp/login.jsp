@@ -1,20 +1,11 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-
 <%@ page  language="java" pageEncoding="utf-8" %>
 <%String path = request.getContextPath();%>
 <html>
-<head lang="en">
-    <meta charset="UTF-8">
+<head>
     <title>Login Page | Amaze UI Example</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="renderer" content="webkit">
-    <meta http-equiv="Cache-Control" content="no-siteapp" />
-    <link rel="alternate icon" type="image/png" href="<%=path%>static/plugins/assets/i/favicon.png">
     <link rel="stylesheet" href="<%=path%>static/plugins/assets/css/amazeui.min.css"/>
     <script src="<%=path%>static/plugins/jquery-2.1.4/jquery.min.js"></script>
-
     <style>
         .header {
             text-align: center;
@@ -41,8 +32,6 @@
     <div class="am-u-lg-6 am-u-md-8 am-u-sm-centered">
         <h3>登录</h3>
         <hr>
-
-
         <form action="/login.do" method="post" class="am-form" onsubmit="return checkLoginForm()">
             <span style="color: #FF0000;">${msg}</span>
             <br>

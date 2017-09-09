@@ -24,17 +24,30 @@ public class LoginController {
         return "register";
     }
 
+    /**
+     * 注册功能：从数据库中找是否有相同的username，
+     * 如果有 则返回注册页面重新注册
+     * 如果没有 则注册成功返回登录页面
+     * @param username
+     * @param password
+     * @param model
+     * @return
+     */
     @RequestMapping("/register.do")
-    public void register(
+    public String register(
             String username,
             String password,
             ModelMap model) {
+        //找不到
         if(userDao.findByUsername(username) == null) {
             User user = new User();
             user.setUsername(username);
             user.setPassword(password);
             userDao.save(user);
+            return "login";
         } else {
+          model.put("msg","用户名已存在");
+          return "register";
            //返回用户名已存在信息
         }
     }
@@ -48,7 +61,8 @@ public class LoginController {
         User user = userDao.findByUsername(username);
         if(user != null) {
             if (user.getPassword().equals(password)) {
-                return "ok";
+                model.put("username",username);
+                return "index";
             } else {
                 model.put("msg", "用户名或密码错误");
                 return "login";
@@ -57,7 +71,5 @@ public class LoginController {
             model.put("msg", "用户名不存在");
             return "login";
         }
-
-
     }
 }

@@ -46,20 +46,18 @@
 </div>
 <div class="am-g">
     <div class="am-u-lg-6 am-u-md-8 am-u-sm-centered">
-        <h3>登录</h3>
+        <h3>注册</h3>
         <hr>
 
-
-        <form action="/register.do" method="post" class="am-form">
+        <form action="/register.do" method="post" class="am-form" onsubmit="return checkLoginForm()">
             <span style="color: #FF0000;">${msg}</span>
             <br>
             <label for="username">账号:</label>
-            <input type="text" name="username" id="username" value="">
+            <input type="text" name="username" id="username" >
             <br>
             <label for="password">密码:</label>
-            <input type="password" name="password" id="password" value="">
+            <input type="password" name="password" id="password" >
             <br>
-
             <br />
             <div class="am-cf">
                 <input type="submit"  value="注 册"  class="am-btn am-btn-primary am-btn-sm am-fl">
@@ -70,4 +68,34 @@
     </div>
 </div>
 </body>
+
+
+<script>
+    function checkLoginForm() {
+        var username = $('#username').val();
+        var password = $('#password').val();
+        if(isNull(username) && isNull(password)){
+            $('#submit').attr('value','请输入账号和密码!!!').css('background','red');
+            return false;
+        }
+        if(isNull(username)){
+            $('#submit').attr('value','请输入账号!!!').css('background','red');
+            return false;
+        }
+        if(isNull(password)){
+            $('#submit').attr('value','请输入密码!!!').css('background','red');
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    function isNull(input) {
+        if (input == null || input =='' || input == undefined) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+</script>
 </html>
