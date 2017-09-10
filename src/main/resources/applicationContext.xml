@@ -25,7 +25,18 @@
 			</property>
 		</bean>
 
-		<!-- 配置拦截器-->
+	<!-- 配置拦截器-->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<!-- 拦截哪些请求 -->
+			<mvc:mapping path="/**"/>
+			<!-- 放过哪些请求 -->
+			<mvc:exclude-mapping path="/tologin.do" />
+			<mvc:exclude-mapping path="/login.do"/>
+			<mvc:exclude-mapping path="/toregister.do"/>
+			<bean class="com.hjy.interceptor.LoginIntercer"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
 
 
 		<!--mybatis配置

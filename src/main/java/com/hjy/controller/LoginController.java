@@ -5,6 +5,7 @@ import com.hjy.models.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -33,7 +34,7 @@ public class LoginController {
      * @param model
      * @return
      */
-    @RequestMapping("/register.do")
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String register(
             String username,
             String password,
@@ -62,6 +63,8 @@ public class LoginController {
         if(user != null) {
             if (user.getPassword().equals(password)) {
                 model.put("username",username);
+                session.setAttribute(
+                        "username", username);
                 return "index";
             } else {
                 model.put("msg", "用户名或密码错误");
