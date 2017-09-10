@@ -53,7 +53,7 @@ public class LoginController {
         }
     }
 
-    @RequestMapping("/login.do")
+    @RequestMapping(value = "/login.do", method = RequestMethod.POST)
     public String checkLogin(
             String username,
             String password,
@@ -65,14 +65,14 @@ public class LoginController {
                 model.put("username",username);
                 session.setAttribute(
                         "username", username);
-                return "index";
+                return "redirect:/index";
             } else {
                 model.put("msg", "用户名或密码错误");
-                return "login";
+                return "redirect:/login";
             }
         } else {
             model.put("msg", "用户名不存在");
-            return "login";
+            return "redirect:/login";
         }
     }
 }

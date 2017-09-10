@@ -13,7 +13,7 @@
     <script src="${ctx}/static/plugins/assets/js/amazeui.min.js"></script>
     <script src="${ctx}/static/plugins/assets/js/app.js"></script>
     <script>
-        var path = '${ctx}';
+        var path = ${ctx};
     </script>
 </head>
 <body>
