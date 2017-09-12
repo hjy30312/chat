@@ -34,6 +34,7 @@
 			<mvc:exclude-mapping path="/tologin.do" />
 			<mvc:exclude-mapping path="/login.do"/>
 			<mvc:exclude-mapping path="/toregister.do"/>
+			<mvc:exclude-mapping path="/register.do"/>
 			<bean class="com.hjy.interceptor.LoginIntercer"></bean>
 		</mvc:interceptor>
 	</mvc:interceptors>

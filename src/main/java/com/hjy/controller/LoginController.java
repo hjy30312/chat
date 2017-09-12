@@ -5,7 +5,6 @@ import com.hjy.models.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -34,12 +33,14 @@ public class LoginController {
      * @param model
      * @return
      */
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    @RequestMapping("/register.do")
     public String register(
             String username,
             String password,
             ModelMap model) {
         //找不到
+        System.out.println(132);
+        System.out.println("username:" + userDao.findByUsername(username));
         if(userDao.findByUsername(username) == null) {
             User user = new User();
             user.setUsername(username);
@@ -53,26 +54,27 @@ public class LoginController {
         }
     }
 
-    @RequestMapping(value = "/login.do", method = RequestMethod.POST)
+    @RequestMapping("/login.do")
     public String checkLogin(
             String username,
             String password,
             ModelMap model,
             HttpSession session) {
         User user = userDao.findByUsername(username);
+        System.out.println("checkLogin");
         if(user != null) {
             if (user.getPassword().equals(password)) {
                 model.put("username",username);
                 session.setAttribute(
                         "username", username);
-                return "redirect:/index";
+                return "index";
             } else {
                 model.put("msg", "用户名或密码错误");
-                return "redirect:/login";
+                return "login";
             }
         } else {
-            model.put("msg", "用户名不存在");
-            return "redirect:/login";
+            model.put("msg", "用户名或密码错误");
+            return "login";
         }
     }
 }

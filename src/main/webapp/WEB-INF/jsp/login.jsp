@@ -46,6 +46,7 @@
                 记住密码
             </label>
             <br />
+            <img alt="验证码" id="scode" src="/verifyCode.do">
             <div class="am-cf">
                 <input type="submit"  id="submit" value="登 录"  class="am-btn am-btn-primary am-btn-sm am-fl">
             </div>
@@ -79,9 +80,9 @@
             return true;
         }
     }
-
+    //未定义的值和定义未赋值的为undefined
     function isNull(input) {
-        if (input == null || input =='' || input == undefined) {
+        if (input == null || input =='' || (typeof(input) == "undefined")) {
             return true;
         } else {
             return false;

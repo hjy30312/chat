@@ -47,7 +47,6 @@
             <button class="am-btn am-btn-default" type="button" onclick="sendMessage()"><span class="am-icon-commenting"></span> 发送</button>
         </div>
     </div>
-
 </div>
 
 <footer class="admin-content-footer">

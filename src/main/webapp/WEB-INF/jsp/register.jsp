@@ -17,7 +17,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="format-detection" content="telephone=no">
     <meta name="renderer" content="webkit">
-    <meta http-equiv="Cache-Control" content="no-siteapp" />
     <link rel="alternate icon" type="image/png" href="<%=path%>static/plugins/assets/i/favicon.png">
     <link rel="stylesheet" href="<%=path%>static/plugins/assets/css/amazeui.min.css"/>
     <script src="<%=path%>static/plugins/jquery-2.1.4/jquery.min.js"></script>
@@ -37,7 +36,6 @@
     </style>
 </head>
 <body>
-
 <div class="header">
     <div class="am-g">
         <h1>Web ide</h1>
@@ -48,8 +46,7 @@
     <div class="am-u-lg-6 am-u-md-8 am-u-sm-centered">
         <h3>注册</h3>
         <hr>
-
-        <form action="/register.do" method="post" class="am-form" onsubmit="return checkLoginForm()">
+        <form action="<%=path%>/register.do" method="post" class="am-form" onsubmit="return checkRegisterForm()">
             <span style="color: #FF0000;">${msg}</span>
             <br>
             <label for="username">账号:</label>
@@ -60,8 +57,8 @@
             <br>
             <br />
             <div class="am-cf">
-                <input type="submit"  value="注 册"  class="am-btn am-btn-primary am-btn-sm am-fl">
-                </div>
+                <input type="submit"  id="submit" value="注 册"  class="am-btn am-btn-primary am-btn-sm am-fl">
+            </div>
         </form>
         <hr>
         <p>© 2014 AllMobilize, Inc. Licensed under MIT license.</p>
@@ -71,7 +68,7 @@
 
 
 <script>
-    function checkLoginForm() {
+    function checkRegisterForm() {
         var username = $('#username').val();
         var password = $('#password').val();
         if(isNull(username) && isNull(password)){
@@ -91,7 +88,7 @@
     }
 
     function isNull(input) {
-        if (input == null || input =='' || input == undefined) {
+        if (input == null || input =='' || (typeof(input) == "undefined")) {
             return true;
         } else {
             return false;
