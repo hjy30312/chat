@@ -4,8 +4,8 @@
 <html>
 <head>
     <title>Login Page | Amaze UI Example</title>
-    <link rel="stylesheet" href="<%=path%>static/plugins/assets/css/amazeui.min.css"/>
-    <script src="<%=path%>static/plugins/jquery-2.1.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="<%=path%>/static/plugins/assets/css/amazeui.min.css"/>
+    <script src="<%=path%>/static/plugins/jquery-2.1.4/jquery.min.js"></script>
     <style>
         .header {
             text-align: center;
@@ -32,7 +32,7 @@
     <div class="am-u-lg-6 am-u-md-8 am-u-sm-centered">
         <h3>登录</h3>
         <hr>
-        <form action="<%=path%>/login.do" method="post" class="am-form" onsubmit="return checkLoginForm()">
+        <form action="<%=path%>/user/login" method="post" class="am-form" onsubmit="return checkLoginForm()">
             <span style="color: #FF0000;">${msg}</span>
             <br>
             <label for="username">账号:</label>
@@ -46,13 +46,15 @@
                 记住密码
             </label>
             <br />
-            <img alt="验证码" id="scode" src="/verifyCode.do">
+            <img alt="验证码" >
+            <input type="text" id="captcha" name="captcha" class="text" maxlength="10" />
+            <img id="captchaImage" src="/user/captcha"/>
             <div class="am-cf">
                 <input type="submit"  id="submit" value="登 录"  class="am-btn am-btn-primary am-btn-sm am-fl">
             </div>
         </form>
 
-        <form action="/toregister.do" method="post" class="am-form">
+        <form action="/user/toregister" method="post" class="am-form">
             <input type="submit"  value ="没有帐号？点击注册">
         </form>
         <hr>

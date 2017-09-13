@@ -17,9 +17,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="format-detection" content="telephone=no">
     <meta name="renderer" content="webkit">
-    <link rel="alternate icon" type="image/png" href="<%=path%>static/plugins/assets/i/favicon.png">
-    <link rel="stylesheet" href="<%=path%>static/plugins/assets/css/amazeui.min.css"/>
-    <script src="<%=path%>static/plugins/jquery-2.1.4/jquery.min.js"></script>
+    <link rel="alternate icon" type="image/png" href="<%=path%>/static/plugins/assets/i/favicon.png">
+    <link rel="stylesheet" href="<%=path%>/static/plugins/assets/css/amazeui.min.css"/>
+    <script src="<%=path%>/static/plugins/jquery-2.1.4/jquery.min.js"></script>
 
     <style>
         .header {

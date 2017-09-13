@@ -2,25 +2,33 @@ package com.hjy.controller;
 
 import com.hjy.dao.IUserDao;
 import com.hjy.models.User;
+import com.hjy.util.CaptchaUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 
 @Controller //扫描
+@RequestMapping(value = "/user")
 public class LoginController {
     @Resource //注入
     private IUserDao userDao;
 
-    @RequestMapping("/tologin.do")
-    public String toLogin() {
-        return "login";
+    @RequestMapping(value = "/captcha", method = RequestMethod.GET)
+    public void captcha(HttpServletRequest httpServletRequest,
+                        HttpServletResponse httpServletResponse) throws ServletException, IOException {
+        CaptchaUtil.outputCaptcha(httpServletRequest,httpServletResponse);
     }
 
-    @RequestMapping("/toregister.do")
-    public String toRegister(){
+    @RequestMapping(value = "/toregister",method = RequestMethod.POST)
+    public String toregister() {
         return "register";
     }
 
@@ -33,28 +41,36 @@ public class LoginController {
      * @param model
      * @return
      */
-    @RequestMapping("/register.do")
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String register(
             String username,
             String password,
             ModelMap model) {
         //找不到
-        System.out.println(132);
-        System.out.println("username:" + userDao.findByUsername(username));
         if(userDao.findByUsername(username) == null) {
             User user = new User();
             user.setUsername(username);
             user.setPassword(password);
             userDao.save(user);
-            return "login";
+            return "redirect:/login";
         } else {
           model.put("msg","用户名已存在");
-          return "register";
+          return "redirect:/register";
            //返回用户名已存在信息
         }
     }
 
-    @RequestMapping("/login.do")
+    @RequestMapping(value = "/login",method = RequestMethod.GET)
+    public String login() {
+        return "login";
+    }
+
+    @RequestMapping(value = "/chat",method = RequestMethod.GET)
+    public String chat() {
+        return "chat";
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String checkLogin(
             String username,
             String password,
@@ -67,14 +83,14 @@ public class LoginController {
                 model.put("username",username);
                 session.setAttribute(
                         "username", username);
-                return "index";
+                return "redirect:/chat";
             } else {
                 model.put("msg", "用户名或密码错误");
-                return "login";
+                return "redirect:/login";
             }
         } else {
             model.put("msg", "用户名或密码错误");
-            return "login";
+            return "redirect:/login";
         }
     }
 }
