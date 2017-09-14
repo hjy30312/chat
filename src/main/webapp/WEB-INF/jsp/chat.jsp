@@ -2,19 +2,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
-<%String path = request.getContextPath();%>
 
 <html>
 <head>
     <title>Amaze UI Admin index Examples</title>
-    <link rel="stylesheet" href="${ctx}/static/plugins/assets/css/amazeui.min.css">
-    <link rel="stylesheet" href="${ctx}/static/plugins/assets/css/admin.css">
-    <script src="${ctx}/static/plugins/jquery-2.1.4/jquery.min.js"></script>
-    <script src="${ctx}/static/plugins/assets/js/amazeui.min.js"></script>
-    <script src="${ctx}/static/plugins/assets/js/app.js"></script>
-    <script>
-        var path = ${ctx};
-    </script>
+    <jsp:include page="include/commonfile.jsp"/>
 </head>
 <body>
 
@@ -102,9 +94,9 @@
     //发送消息
     function sendMessage() {
         var message = document.getElementById('message').value;
-        message =  "${username}说：" + message  ;
+        message = "${username}说：" + message ;
+        $("#message").val("");  //清空输入区
         websocket.send(message);
-        $('#message').val("");  //清空输入区
     }
 </script>
 

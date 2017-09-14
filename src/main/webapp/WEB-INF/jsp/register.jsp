@@ -55,6 +55,9 @@
             <label for="password">密码:</label>
             <input type="password" name="password" id="password" >
             <br>
+            <label for="password">确认密码:</label>
+            <input type="password" name="password" id="repassword" >
+            <br>
             <br />
             <div class="am-cf">
                 <input type="submit"  id="submit" value="注 册"  class="am-btn am-btn-primary am-btn-sm am-fl">

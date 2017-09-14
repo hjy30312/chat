@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.annotation.Resource;
+import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,15 +17,24 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @Controller //扫描
-@RequestMapping(value = "/user")
 public class LoginController {
     @Resource //注入
     private IUserDao userDao;
 
-    @RequestMapping(value = "/captcha", method = RequestMethod.GET)
+    @RequestMapping(value = "/captcha.jpg", method = RequestMethod.GET)
     public void captcha(HttpServletRequest httpServletRequest,
                         HttpServletResponse httpServletResponse) throws ServletException, IOException {
-        CaptchaUtil.outputCaptcha(httpServletRequest,httpServletResponse);
+        // 通知浏览器不要缓存
+        httpServletResponse.setHeader("Expires", "-1");
+        httpServletResponse.setHeader("Cache-Control", "no-cache");
+        httpServletResponse.setHeader("Pragma", "-1");
+
+        CaptchaUtil util = CaptchaUtil.Instance();
+        // 将验证码输入到session中，用来验证
+        String code = util.getString();
+        httpServletRequest.getSession().setAttribute("code", code);
+        // 输出打web页面
+        ImageIO.write(util.getImage(), "jpg", httpServletResponse.getOutputStream());
     }
 
     @RequestMapping(value = "/toregister",method = RequestMethod.POST)
@@ -65,32 +75,43 @@ public class LoginController {
         return "login";
     }
 
-    @RequestMapping(value = "/chat",method = RequestMethod.GET)
+    @RequestMapping(value = "/chat",method = RequestMethod.POST)
     public String chat() {
         return "chat";
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @RequestMapping(value = "/checklogin", method = RequestMethod.POST)
     public String checkLogin(
             String username,
             String password,
+            String captcha,
             ModelMap model,
             HttpSession session) {
         User user = userDao.findByUsername(username);
-        System.out.println("checkLogin");
+        String codeSession = (String) session.getAttribute("code");
+        System.out.println("codeSession:" + codeSession);
+        System.out.println("captcha:" + captcha);
+
+        if(codeSession.equalsIgnoreCase(captcha)) {
+            //验证码正确
+        } else {
+            model.put("msg", "验证码错误");
+            return "/login";
+        }
+
         if(user != null) {
             if (user.getPassword().equals(password)) {
                 model.put("username",username);
                 session.setAttribute(
                         "username", username);
-                return "redirect:/chat";
+                return "/chat";
             } else {
                 model.put("msg", "用户名或密码错误");
-                return "redirect:/login";
+                return "/login";
             }
         } else {
             model.put("msg", "用户名或密码错误");
-            return "redirect:/login";
+            return "/login";
         }
     }
 }

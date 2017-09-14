@@ -12,6 +12,7 @@
                         http://www.springframework.org/schema/context/spring-context-3.2.xsd
                         http://www.springframework.org/schema/mvc
                         http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+		<!-- 开启注解模式 -->
 		<mvc:annotation-driven />
 		<!--扫描controller	-->
 		<context:component-scan base-package="com.hjy"/>
@@ -25,20 +26,22 @@
 			</property>
 		</bean>
 
-	<!-- 配置拦截器-
+	<!-- 配置拦截器-->
 	<mvc:interceptors>
 		<mvc:interceptor>
-			<!- 拦截哪些请求
+			<!-- 拦截哪些请求 -->
 			<mvc:mapping path="/**"/>
-			<!- 放过哪些请求
-			<mvc:exclude-mapping path="/tologin.do" />
-			<mvc:exclude-mapping path="/login.do"/>
-			<mvc:exclude-mapping path="/toregister.do"/>
-			<mvc:exclude-mapping path="/register.do"/>
+			<!-- 放过哪些请求 -->
+			<mvc:exclude-mapping path="/static/**" />
+			<mvc:exclude-mapping path="/login"/>
+			<mvc:exclude-mapping path="/checklogin"/>
+			<mvc:exclude-mapping path="/toregister"/>
+			<mvc:exclude-mapping path="/register"/>
 			<mvc:exclude-mapping path="/captcha"/>
+			<mvc:exclude-mapping path="/captcha.jpg"/>
 			<bean class="com.hjy.interceptor.LoginIntercer"></bean>
 		</mvc:interceptor>
-	</mvc:interceptors>-->
+	</mvc:interceptors>
 
 
 		<!--mybatis配置
@@ -90,4 +93,10 @@
 			</property>
 		</bean>
 
+	<!-- 静态资源映射 -->
+	<mvc:resources mapping="/static/**" location="/static/"/>
+
+	<mvc:resources location="/" mapping="/**/*.html"/>
+	<mvc:resources location="/" mapping="/**/*.js"/>
+	<mvc:resources location="/" mapping="/**/*.css"/>
 </beans>

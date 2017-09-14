@@ -20,7 +20,8 @@ public class LoginIntercer
         if (name != null) { //登录过
             return true;
         } else {    //未登录或登录失败
-            httpServletResponse.sendRedirect("tologin.do");
+            System.out.println("preHandle：登录失败");
+            httpServletResponse.sendRedirect("/login");
             return false;
         }
     }

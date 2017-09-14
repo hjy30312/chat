@@ -5,9 +5,7 @@
           http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          version="3.0">
   <display-name>Archetype Created Web Application</display-name>
-    
 
-    
     <servlet>
         <servlet-name>chat</servlet-name>
         <servlet-class>
@@ -24,5 +22,6 @@
         <servlet-name>chat</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
+
 
 </web-app>
