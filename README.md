@@ -10,4 +10,4 @@
 <p>数据库：</p>
 <p>JAR包：如果不会使用maven使用的jar包在pom.xml里;强烈建议使用maven进行项目管理,
   <a href="http://how2j.cn/k/maven/maven-introduction/1328.html?p=16120">学习网站</a>。使用了maven进行管理。</p>
-</p>
+<p>项目直接导入eclipse或者idea即可</p>
