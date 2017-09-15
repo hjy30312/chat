@@ -46,7 +46,7 @@
     <div class="am-u-lg-6 am-u-md-8 am-u-sm-centered">
         <h3>注册</h3>
         <hr>
-        <form action="<%=path%>/register.do" method="post" class="am-form" onsubmit="return checkRegisterForm()">
+        <form action="<%=path%>/register" method="post" class="am-form" onsubmit="return checkRegisterForm()">
             <span style="color: #FF0000;">${msg}</span>
             <br>
             <label for="username">账号:</label>
@@ -55,8 +55,8 @@
             <label for="password">密码:</label>
             <input type="password" name="password" id="password" >
             <br>
-            <label for="password">确认密码:</label>
-            <input type="password" name="password" id="repassword" >
+            <label for="repassword">确认密码:</label>
+            <input type="text" name="repassword" id="repassword" >
             <br>
             <br />
             <div class="am-cf">
@@ -74,6 +74,7 @@
     function checkRegisterForm() {
         var username = $('#username').val();
         var password = $('#password').val();
+        var repassword = $('#repassword').val();
         if(isNull(username) && isNull(password)){
             $('#submit').attr('value','请输入账号和密码!!!').css('background','red');
             return false;
@@ -85,7 +86,16 @@
         if(isNull(password)){
             $('#submit').attr('value','请输入密码!!!').css('background','red');
             return false;
-        } else {
+        }
+        if (isNull(repassword)) {
+            $('#submit').attr('value','请确认输入密码!!!').css('background','red');
+            return false;
+        }
+        if (repassword != password) {
+            $('#submit').attr('value','两次密码不相同!!!').css('background','red');
+            return false;
+        }
+        else {
             return true;
         }
     }
