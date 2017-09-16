@@ -1,39 +1,47 @@
 package com.hjy.text;
 
-import com.hjy.dao.impl.UserDao;
-import com.hjy.models.User;
-import com.hjy.util.DaoFactory;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+/*
+给定一个数组序列，
+使得区间经过如下计算的值是所有区间中最大的:
+区间中的最小数*区间所有数的和
 
+        如[6，2，1]，则求出区间为[6]
+        输入:
+        3
+        6 2 1
+
+        输出:
+        36
+*/
 public class test {
-    public static int[] printMatrix(int[][] mat,int n, int m) {
-        // write code here
-        int[] temp = new int[n * m];
+    public static int function(int[] arr) {
+        int len = arr.length;
+        int[] sum = new int[len];
         int ans = 0;
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j++) {
-                temp[ans++] = mat[i][j];
+        for (int i = 0; i < len; i++) {
+            //右边界
+            sum[i] = arr[i];
+            for (int j = i+1; j < len; j++) {
+                if (arr[j] >= arr[i]) {
+                    sum[i] += arr[j];
+                } else {
+                    break;
+                }
             }
-            if (i + 2 != n ) {
-                i++;
-            } else {
-                break;
+            //左边界
+            for (int j = i-1; j >= 0;j--) {
+                if (arr[j] >= arr[i]) {
+                    sum[i] += arr[j];
+                } else {
+                    break;
+                }
             }
-            for (int j = m-1; j >= 0; j--) {
-                temp[ans++] = mat[i][j];
-            }
+            ans = Math.max(ans,sum[i]*arr[i]);
         }
-        return temp;
+        return ans;
     }
     public static void main(String[] args) {
-        String conf = "applicationContext.xml";
-        ApplicationContext ac =
-                new ClassPathXmlApplicationContext(conf);
-        UserDao userDao = ac.getBean(
-                "userDao", UserDao.class);
-        User user = userDao.findByUsername("hjy");
-        System.out.println(user.getUsername());
+        int[] arr = {1,2,3,5,4};
+        System.out.println(function(arr));
     }
 }
-

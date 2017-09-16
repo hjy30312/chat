@@ -1,8 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	   xmlns:aop="http://www.springframework.org/schema/aop"
-	   xmlns:tx="http://www.springframework.org/schema/tx"
 	   xmlns:jdbc="http://www.springframework.org/schema/jdbc"
 	   xmlns:context="http://www.springframework.org/schema/context"
 	   xmlns:mvc="http://www.springframework.org/schema/mvc"
@@ -42,34 +40,6 @@
 			<bean class="com.hjy.interceptor.LoginIntercer"></bean>
 		</mvc:interceptor>
 	</mvc:interceptors>
-
-
-		<!--mybatis配置
-		<bean id="dataSourse" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-			<property name="driverClassName">
-				<value>com.mysql.jdbc.Driver</value>
-			</property>
-			<property name="url">
-				<value>jdbc:mysql://localhost:3306/hjy?characterEncoding=UTF-8</value>
-			</property>
-			<property name="username">
-				<value>root</value>
-			</property>
-			<property name="password">
-				<value>admin</value>
-			</property>
-		</bean>
-
-		<bean id="sqlSeesion" class="org.mybatis.spring.SqlSessionFactoryBean">
-			<property name="dataSource" ref="dataSourse"/>
-			<property name="mapperLocations" value="applicationContext.xml"/>
-		</bean>
-
-		<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-			<property name="basePackage" value="com.hjy.mapper"/>
-		</bean>
--->
-
 
 		<!-- 定义JdbcTemplate -->
 		<bean id="template"
